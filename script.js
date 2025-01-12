@@ -1,5 +1,10 @@
+// Import the dotenv package
+require('dotenv').config();
+
+// Access the OpenAI API key from the .env file
+const apiKey = process.env.OPENAI_API_KEY;
+
 async function getChatGPTResponse(userMessage) {
-    const apiKey = "YOUR_OPENAI_API_KEY"; // Replace with your OpenAI API Key
     const url = "https://api.openai.com/v1/chat/completions";
 
     const response = await fetch(url, {
@@ -18,6 +23,7 @@ async function getChatGPTResponse(userMessage) {
     return data.choices[0].message.content;
 }
 
+// Event listener for the button
 document.getElementById("sendButton").addEventListener("click", async () => {
     const userMessage = document.getElementById("userInput").value;
     const botResponse = await getChatGPTResponse(userMessage);
